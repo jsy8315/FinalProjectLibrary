@@ -9,22 +9,42 @@ public class Book {
 	private int id; // 책 등록시 부여되는 id, 책 등록번호
 	private String title;
 	private String author;
+	private String publisher;
 	private Date publishedDay;
 	private boolean lendPossible = true;
 	
-	public Book(String title, String author, Date publishedDay) {
+	public Book(int id, String title, String author, String publisher, Date publishedDay, boolean lendPossible) {
+		this.id = id;
 		this.title = title;
 		this.author = author;
+		this.publisher = publisher;
 		this.publishedDay = publishedDay;
+		this.lendPossible = lendPossible;
 	}
 	
 	@Override
 	public String toString() {
-		return "책 등록 번호 : " + id + ", 책 제목 : " + title + ", 저자 : "
-				 + ", 출간일 : " + publishedDay + ", 대출 가능 여부 : " + lendPossible;
+		return "책 등록 번호 : " + id + ", 책 제목 : " + title + ", 저자 : " + author + ", 출판사 : "
+				 + ", 출간일 : " + publishedDay;
 	}
 	
 	
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public Date getPublishedDay() {
+		return publishedDay;
+	}
+
+	public void setPublishedDay(Date publishedDay) {
+		this.publishedDay = publishedDay;
+	}
+
 	public int getId() {
 		return id;
 	}
