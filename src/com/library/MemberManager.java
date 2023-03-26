@@ -27,7 +27,9 @@ public class MemberManager implements Manager {
 		System.out.println("전화번호를 \"-\" 없이 입력하세요 : ");
 		String inputPhonenumber = sc.next(); // 전화번호 입력
 		
-		
+		//여기서 받은 입력값 inputName, inputPhonenumber로 조회하자
+		//fileManager의 조회기능 사용해서 조회하자
+		// 회원 정보 보여주기
 	}
 
 	@Override
