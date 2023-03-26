@@ -3,6 +3,8 @@ package com.library;
 import java.util.Date;
 
 //Book 클래스: 도서 정보를 저장하는 클래스
+//test
+// test가 안되네
 public class Book {
 	private int id; // 책 등록시 부여되는 id, 책 등록번호
 	private String title;

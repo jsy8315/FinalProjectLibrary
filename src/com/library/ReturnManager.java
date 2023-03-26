@@ -6,8 +6,8 @@ public class ReturnManager implements Manager {
 	
 	@Override 
 	public void add() { //반납 처리
-		// TODO Auto-generated method stub
-		
+		// 회원id.csv 파일을 생성, 반납한 책 이력 기록
+		// 책id.csv 파일을 생성, 반납한 책 이력 기록
 	}
 
 	@Override
@@ -18,12 +18,13 @@ public class ReturnManager implements Manager {
 
 	@Override
 	public void update() { //반납 날짜 수정 : 연장
-		// TODO Auto-generated method stub
+		// booklist.csv 파일을 수정. lendPossible 0 -> 1으로	
+		// memberlist.csv 파일을 수정. lendPossible 0 -> 1으로
 		
 	}
 
 	@Override
-	public void delete() { //반납 
+	public void delete() { // 
 		// TODO Auto-generated method stub
 		
 	}
