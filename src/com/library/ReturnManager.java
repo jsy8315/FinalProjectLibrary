@@ -6,8 +6,6 @@ public class ReturnManager implements Manager {
 	
 	@Override 
 	public void add() { //반납 처리
-		// 회원id.csv 파일을 생성, 반납한 책 이력 기록
-		// 책id.csv 파일을 생성, 반납한 책 이력 기록
 	}
 
 	@Override

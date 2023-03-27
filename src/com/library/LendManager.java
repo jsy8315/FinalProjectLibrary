@@ -6,7 +6,19 @@ import java.util.Scanner;
 public class LendManager implements Manager {
 
 	@Override
-	public void add() { // 대출 이력 생성, Record에 기록 
+	public void add() { 
+	// 대출 이력 생성, Record에 기록 (추가니까 create에 할당)
+		
+	}
+
+	@Override
+	public void search() { //안쓸꺼임
+	}
+
+	@Override
+	public void update() { 
+	// 찐 대출 기능 (수정이니까 update에 할당)
+	// book에서 대출 가능을 false로 바꿈 (수정)
 	// 나중에 대출 기능은 while문으로 수정해야할듯?
 		
 		// 1. 회원 조회, outputMemberId로 회원id 받아옴
@@ -32,28 +44,11 @@ public class LendManager implements Manager {
 		changingBooklendpossible.lendBookLendPossibleUpdate(b);
 		
 		// 3. 대출한 책 이력 기록
-		
-		
-		
-	}
-
-	@Override
-	public void search() { //안쓸꺼임
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update() { //book에서 대출 가능을 false로 바꿈 (수정)
-		// 1. booklist.csv 파일을 수정. lendPossible 1 -> 0으로	
-		
-		// 2. memberlist.csv 파일을 수정. lendPossible 1 -> 0으로	
+		// 아 이거 어케하지.........
 	}
 
 	@Override
 	public void delete() { //안쓸꺼임
-		// TODO Auto-generated method stub
-		
 	}
 
 }

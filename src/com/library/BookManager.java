@@ -15,6 +15,7 @@ public class BookManager implements Manager {
 	public void search() { //R, 책 검색, 보여주기
 		// 책 조회 기능
 		// 회원이면 회원 id를 보여주고, 아니면 회원이 아닙니다, 문구를 출력
+		// 근데 이 스캐너 기능 다 main으로 돌려야됨
 		Scanner sc = new Scanner(System.in);
 		System.out.println("책 조회를 시작합니다.");
 		System.out.println("제목을 입력하세요 : ");
