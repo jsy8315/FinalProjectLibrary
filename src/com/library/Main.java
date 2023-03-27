@@ -23,12 +23,10 @@ public class Main {
                     	int shouldContinue11Input = loanMenu.shouldContinue11Menu();
                     	
                     	switch (shouldContinue11Input) {
-                    		case 1: // 대출 해주기
-                            	Loan firstloan = new Loan();
-                            	// firstloan.메소드 적어넣기
+                    		case 1: // 1.대출 해주기
                     			break;
                     			
-                    		case 2: // 반납 받기
+                    		case 2: // 2.반납 받기
                             	Loan secondloan = new Loan();
                             	// secondloan.메소드 적어넣기
                     			break;
