@@ -30,12 +30,6 @@ public class MemberManager implements Manager {
 		FileManager filemanager = new FileManager(); //FileManager 클래스 인스턴스화
 		filemanager.memberIdSearch(inputName, inputPhonenumber); // FileManager의 memberIdSearch 메소드 호출
 		
-		//여기서 받은 입력값 inputName, inputPhonenumber로 조회하자
-		//fileManager의 조회기능 사용해서 조회하자
-		// fileManger에서 member.csv파일을 열어서
-		// 회원번호를 조회하자 (이름, 전화번호 일치하는 과정까지 하면 넘 오래걸릴거같음)
-		// 아니 근데 회원번호 조회하려면 파일 열어야 되잖아
-		// 회원 정보 보여주기
 	}
 
 	@Override

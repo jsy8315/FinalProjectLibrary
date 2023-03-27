@@ -45,6 +45,7 @@ public class LendManager implements Manager {
 		
 		// 3. 대출한 책 이력 기록
 		// 아 이거 어케하지.........
+		// 책 id, 회원 id, 대출날짜, 반납날짜, 연체날짜???
 	}
 
 	@Override
