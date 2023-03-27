@@ -9,7 +9,7 @@ public class Member {
 	private String phonenumber;
 	private Date birthday;
 	private Date memberday;
-	private boolean lendPossible;
+	private boolean lendPossible; // 대출 가능 여부를 불리언으로 표시
 	
 	public Member(int id, String name, String address, String phonenumber, Date birthday, Date memberday,  boolean lendPossible) {
 		this.id = id;
