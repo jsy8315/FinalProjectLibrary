@@ -12,7 +12,7 @@ public class BookManager implements Manager {
 	}
 
 	@Override
-	public void search() { //R, 책 조회해서 id를 return해줌
+	public void search() { //R, 책 조회해서 id를 return해줌, 없으면 없다고 함
 		// 책 조회 기능
 		// 근데 이 스캐너 기능 다 main으로 돌려야됨
 		Scanner sc = new Scanner(System.in);

@@ -24,6 +24,7 @@ public class LendManager implements Manager {
 		// 1. 회원 조회, outputMemberId로 회원id 받아옴
 		MemberManager membermanager = new MemberManager();
 		membermanager.search();
+		// 만약 회원의 lendPossible이 0이면 "이미 다출 중인 도서가 있습니다"
 	
 		// 2. 회원의 lendPossible을 1 -> 0으로
 		FileManager changingMemberlendpossible = new FileManager();
@@ -45,7 +46,7 @@ public class LendManager implements Manager {
 		
 		// 3. 대출한 책 이력 기록
 		// 아 이거 어케하지.........
-		// 책 id, 회원 id, 대출날짜, 반납날짜, 연체날짜???
+		// 책 id, 회원 id, 대출날짜(오늘날짜), 반납예정날짜 기록
 	}
 
 	@Override

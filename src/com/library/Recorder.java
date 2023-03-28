@@ -1,7 +1,7 @@
 package com.library;
 
 public interface Recorder {
-	// Create 대출반납 이력추가
+	// Create 대출, 반납 이력추가
 	public void add();
 	
 	// Read 대출반납 이력조회

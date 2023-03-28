@@ -23,7 +23,7 @@ public class FileManager implements Manager {
 	}
 	
 	public void lendMemberLendPossibleUpdate(int outputMemberId) { 
-		// 키워드로 outputMemberId를 넣으면 lendPossible을 0 -> 1로 만들어줌
+		// 빌려주기 : 키워드로 outputMemberId를 넣으면 lendPossible을 1 - > 0로 만들어줌
 		
 		// file 경로 설정
 		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\member.csv";
@@ -66,9 +66,54 @@ public class FileManager implements Manager {
             }
         }
 	}
+	
+	public void returnMemberLendPossibleUpdate(int outputMemberId) { 
+		// 반납하기 : 키워드로 outputMemberId를 넣으면 lendPossible을 0 -> 1로 만들어줌
+		
+		// file 경로 설정
+		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\member.csv";
+        
+		// BufferedReader는 객체를 선언할때, 초기값을 null로 설정해주는 코드
+		// 이렇게 변수를 미리 선언하고 초기화하면, 나중에 예외처리 시 BufferedReader객체가 
+		// 정상적으로 생성되지 않았을 경우에 대비하여 null 여부를 검사할 수 있음
+		BufferedReader br = null;
+		
+		//line변수는 csv파일을 읽어들일떄, 한줄씩 읽어들인 문자열을 저장하는 변수
+        String line = "";
+        
+        // csv파일에서 각 데이터 구분 기준 지정, 여기서는 쉼표
+        String delimiter = ",";
+        
+		try {
+			// BufferedReader 객체 생성, 읽을 파일의 경로인 filePath
+			br = new BufferedReader(new FileReader(filePath));
+			
+			// 파일의 내용 한줄씩 읽음
+			while ((line = br.readLine()) != null) {
+				
+				// CSV 데이터 파싱: 읽어들인 CSV 데이터는 각 라인을 쉼표로 구분한
+				// 문자열 배열로 변환
+				String[] data = line.split(delimiter);
+				if (outputMemberId == Integer.parseInt(data[0])) { // 일치하면
+					data[6] = "1"; // lendPossible을 0으로 바꿈
+				}
+			}
+		} catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+        	// 파일 입력 스트림 닫기
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+	}
 		
 	public void lendBookLendPossibleUpdate(int outputBookId) { 
-		// 키워드로 outputMemberId를 넣으면 lendPossible을 0 -> 1로 만들어줌
+		// 빌려주기 : 키워드로 outputMemberId를 넣으면 lendPossible을 1 -> 0로 만들어줌
 		
 		// file 경로 설정
 		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\books.csv";
@@ -96,6 +141,51 @@ public class FileManager implements Manager {
 				String[] data = line.split(delimiter);
 				if (outputBookId == Integer.parseInt(data[0])) { // 일치하면
 					data[5] = "0"; // lendPossible을 0으로 바꿈
+				}
+			}
+		} catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+        	// 파일 입력 스트림 닫기
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+	}
+	
+	public void returnBookLendPossibleUpdate(int outputBookId) { 
+		// 반납하기 : 키워드로 outputMemberId를 넣으면 lendPossible을 0 -> 1로 만들어줌
+		
+		// file 경로 설정
+		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\books.csv";
+        
+		// BufferedReader는 객체를 선언할때, 초기값을 null로 설정해주는 코드
+		// 이렇게 변수를 미리 선언하고 초기화하면, 나중에 예외처리 시 BufferedReader객체가 
+		// 정상적으로 생성되지 않았을 경우에 대비하여 null 여부를 검사할 수 있음
+		BufferedReader br = null;
+		
+		//line변수는 csv파일을 읽어들일떄, 한줄씩 읽어들인 문자열을 저장하는 변수
+        String line = "";
+        
+        // csv파일에서 각 데이터 구분 기준 지정, 여기서는 쉼표
+        String delimiter = ",";
+        
+		try {
+			// BufferedReader 객체 생성, 읽을 파일의 경로인 filePath
+			br = new BufferedReader(new FileReader(filePath));
+			
+			// 파일의 내용 한줄씩 읽음
+			while ((line = br.readLine()) != null) {
+				
+				// CSV 데이터 파싱: 읽어들인 CSV 데이터는 각 라인을 쉼표로 구분한
+				// 문자열 배열로 변환
+				String[] data = line.split(delimiter);
+				if (outputBookId == Integer.parseInt(data[0])) { // 일치하면
+					data[5] = "1"; // lendPossible을 0으로 바꿈
 				}
 			}
 		} catch (IOException e) {
