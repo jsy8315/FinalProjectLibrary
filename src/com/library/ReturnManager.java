@@ -39,6 +39,8 @@ public class ReturnManager implements Manager {
 		System.out.println("책 id를 입력하세요");
 		int b = sc.nextInt();
 		changingBooklendpossible.returnBookLendPossibleUpdate(b);
+		
+		//5.기록하기
 	}
 
 	@Override

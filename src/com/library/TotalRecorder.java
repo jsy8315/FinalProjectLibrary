@@ -4,7 +4,7 @@ public class TotalRecorder implements Recorder {
 
 	@Override
 	public void add() { 	// Create 대출, 반납 이력추가
-		// 기록 id, 책 id, 회원 id, 대출날짜(오늘날짜), 기본 반납예정날짜
+		// 대출날짜(오늘날짜), 책 id, 회원 id, 기본 반납예정날짜
 	}
 
 	@Override
@@ -14,11 +14,13 @@ public class TotalRecorder implements Recorder {
 
 	@Override
 	public void update() {	// Update 대출반납 이력수정(연장)
-		// 기록 id, 책 id, 회원 id, 대출날짜(오늘날짜), 기본 반납예정날짜 , 실제 반납 날짜 기록
+		// 반납 날짜 기록
+		// 대출날짜(오늘날짜), 책 id, 회원 id, 기본 반납예정날짜 , 실제 반납 날짜 기록
 	}
 	
 	public void extendupdate() { // 연장처리
-		// 기록 id, 책 id, 회원 id, 대출날짜(오늘날짜), 기본 반납예정날짜 , 실제 반납 날짜 기록
+		// 연장처리
+		// 대출날짜(오늘날짜), 책 id, 회원 id, 대출날짜(오늘날짜), 기본 반납예정날짜 , 실제 반납 날짜 기록
 	}
 
 	@Override

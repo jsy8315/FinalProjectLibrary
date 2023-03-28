@@ -24,7 +24,7 @@ public class LendManager implements Manager {
 		// 1. 회원 조회, outputMemberId로 회원id 받아옴
 		MemberManager membermanager = new MemberManager();
 		membermanager.search();
-		// 만약 회원의 lendPossible이 0이면 "이미 다출 중인 도서가 있습니다"
+		// 만약 회원의 lendPossible이 0이면 "이미 다출 중인 도서가 있습니다"--->나중에 기능 추가
 	
 		// 2. 회원의 lendPossible을 1 -> 0으로
 		FileManager changingMemberlendpossible = new FileManager();
