@@ -11,9 +11,9 @@ public class Book {
 	private String author;
 	private String publisher;
 	private Date publishedDay;
-	private boolean lendPossible = true;
+	private int lendPossible;
 	
-	public Book(int id, String title, String author, String publisher, Date publishedDay, boolean lendPossible) {
+	public Book(int id, String title, String author, String publisher, Date publishedDay, int lendPossible) {
 		this.id = id;
 		this.title = title;
 		this.author = author;
@@ -69,10 +69,10 @@ public class Book {
 	public void setPublishedDate(Date publishedDate) {
 		this.publishedDay = publishedDate;
 	}
-	public boolean isLendPossible() {
+	public int isLendPossible() {
 		return lendPossible;
 	}
-	public void setLendPossible(boolean lendPossible) {
+	public void setLendPossible(int lendPossible) {
 		this.lendPossible = lendPossible;
 	}
 }
