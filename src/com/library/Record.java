@@ -10,4 +10,6 @@ public class Record {
 	private Date defaultReturnDay; // 기본 반납 날짜
 	private Date realReturnDay; // 실제 반납 날짜
 	private Date extendedReturnDay; // 연장된 반납 날짜
+	
+	public Record()
 }
