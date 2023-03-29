@@ -1,8 +1,13 @@
 package com.library;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.io.FileReader;
 import java.time.LocalDate;
 
 public class TotalRecorder implements Recorder {
@@ -12,22 +17,33 @@ public class TotalRecorder implements Recorder {
 		// Create 대출, 반납 이력추가
 		// 연장횟수, 대출날짜(오늘날짜), 책 id, 회원 id, 기본 반납예정날짜
 		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\record.csv";
-		String line;
-		String data;
-		BufferedReader br = new BufferedReader(new FileReader(filePath));
-		int a;
-		int b;
 		
-		while ((line = br.readLine()) != null) {
-		    data += line + "\n";
-		}
-		data += "0," + LocalDate.now() + "," + int a + "," + int b + ",defaultReturnDay,extendedReturnDay,realReturnDay\n";
-		br.close();
+		//Main에서 실행할때 outputMemberId, outputBookId 받아오기
 		
-		FileWriter fw = new FileWriter("record.csv");
-		fw.write(data);
-		fw.close();
-
+        int  bookId = 0; // 일단 0으로 세팅, outputBookId 받아올거임
+        int memberId = 0; // 일단 0으로 세팅, outputMemberId 받아올거임
+        
+        // 대출일을 오늘 날짜로 설정
+        Date loanDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String lendDay = dateFormat.format(loanDate);
+        
+        // 반납일을 2주 후로 설정 (기본)
+        Calendar returnDate = Calendar.getInstance();
+        returnDate.setTime(loanDate);
+        returnDate.add(Calendar.DATE, 14);
+        String defaultReturnDay = dateFormat.format(returnDate.getTime());
+        
+        // record.csv 파일에 대출 이력 저장
+        try {
+            FileWriter writer = new FileWriter(filePath, true);
+            writer.append("0," + lendDay + "," + bookId + "," + memberId + "," + defaultReturnDay + "\n");
+            writer.close();
+            System.out.println("record.csv 파일에 대출 이력이 저장되었습니다.");
+        } catch (IOException e) {
+            System.out.println("record.csv 파일에 대출 이력을 저장하는 중 오류가 발생했습니다.");
+            e.printStackTrace();
+        }
 	}
 
 	@Override

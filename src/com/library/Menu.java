@@ -12,7 +12,7 @@ public class Menu {
 	// 메인 while문 화면의 메뉴
 	int shouldContinue1Menu() { 
 		System.out.println("도서 대출 프로그램을 시작합니다");
-		System.out.println("1.대출시작    2.회원관리    3.도서관리    4.도연시   5.종료");
+		System.out.println("1.대출시작    2.회원관리    3.도서관리    4.종료");
 		int shouldContinue1MenuInput = sc.nextInt();
 		return shouldContinue1MenuInput;
 	}
@@ -33,7 +33,7 @@ public class Menu {
 	
 	int shouldContinue13Menu() { 
 		System.out.println("도서관리를 시작합니다.");
-		System.out.println("1.대출 가능한 책 리스트    2.대출 불가능한 책 리스트   3.새로나온 책");
+		System.out.println("1.대출 가능한 책 리스트    2.대출 불가능한 책 리스트   3.새로나온 책	4.이전화면");
 		int shouldContinue13MenuInput = sc.nextInt();
 		return shouldContinue13MenuInput;
 	}

@@ -6,12 +6,7 @@ import java.util.Scanner;
 public class LendManager implements Manager {
 
 	@Override
-	public void add() { 
-	// 대출 이력 생성, Record에 기록 (추가니까 create에 할당)
-	// 대출한 책 이력 기록
-	// 책 id, 회원 id, 대출날짜(오늘날짜), 반납예정날짜 기록
-		TotalRecorder lendrecord = new TotalRecorder();
-		lendrecord.add();
+	public void add() { // 원래 record.csv에 기록하는 기능을 넣으려고 했는데, 생각해보니 그냥 TotalRecorder란 클래스를 만들어서 Main에 바로 적용하는게 좋을듯
 	}
 
 	@Override
@@ -49,7 +44,7 @@ public class LendManager implements Manager {
 		int b = sc.nextInt();
 		changingBooklendpossible.lendBookLendPossibleUpdate(b);
 		
-		// 3. 대출한 책 이력 기록
+		// 3. 대출한 책 이력 기록, TotalRecorder 사용해서 구현하고 Main에서 적자
 		// 책 id, 회원 id, 대출날짜(오늘날짜), 반납예정날짜 기록
 		
 	}
