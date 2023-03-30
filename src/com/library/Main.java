@@ -30,8 +30,8 @@ public class Main {
                     			lendmanager.update(); // 반납처리
                     			
                     			// 대출 이력 record.csv에 추가
-                    			FileManager filemanager = new FileManager();
-                    			int outputBookId = filemanager.memberIdSearch());
+                    			MemberManager membermanager = new MemberManager();
+                    			int outputBookId = membermanager.search();
                     			int outputMemberId
                     			
                     	        int  bookId = int outputBookId; // 일단 0으로 세팅, outputBookId 받아올거임
