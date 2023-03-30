@@ -30,10 +30,15 @@ public class Main {
                     			lendmanager.update(); // 반납처리
                     			
                     			// 대출 이력 record.csv에 추가
-                    	        int  bookId = b; // 일단 0으로 세팅, outputBookId 받아올거임
+                    			FileManager filemanager = new FileManager();
+                    			int outputBookId = filemanager.memberIdSearch());
+                    			int outputMemberId
+                    			
+                    	        int  bookId = int outputBookId; // 일단 0으로 세팅, outputBookId 받아올거임
                     	        int memberId = a; // 일단 0으로 세팅, outputMemberId 받아올거임
-                    			// TotalRecorder totalrecorder = new TotalRecorder();
-                    			// totalrecorder.add();
+                    	        
+                    			TotalRecorder totalrecorder = new TotalRecorder();
+                    			totalrecorder.add();
                     			break;
                     			
                     		case 2: // 2.반납 받기

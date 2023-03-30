@@ -7,7 +7,7 @@ public class ReturnManager implements Manager {
 
 	
 	@Override 
-	public void add() { //반납 처리
+	public void add() { 
 	}
 
 	@Override
