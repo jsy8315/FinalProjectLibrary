@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 import java.io.FileReader;
 import java.time.LocalDate;
 
@@ -18,10 +19,12 @@ public class TotalRecorder implements Recorder {
 		// 연장횟수, 대출날짜(오늘날짜), 책 id, 회원 id, 기본 반납예정날짜
 		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\record.csv";
 		
-		//Main에서 실행할때 outputMemberId, outputBookId 받아오기
-		
-        int  bookId = 0; // 일단 0으로 세팅, outputBookId 받아올거임
-        int memberId = 0; // 일단 0으로 세팅, outputMemberId 받아올거임
+        Scanner sc1 = new Scanner(System.in);
+		System.out.println("회원 id를 입력하세요");
+		int bookId = sc1.nextInt();
+		Scanner sc2 = new Scanner(System.in);
+		System.out.println("책 id를 입력하세요");
+		int memberId = sc2.nextInt(); 
         
         // 대출일을 오늘 날짜로 설정
         Date loanDate = new Date();

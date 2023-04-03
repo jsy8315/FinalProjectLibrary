@@ -27,19 +27,12 @@ public class Main {
                     	switch (shouldContinue11Input) {
                     		case 1: // 1.대출 해주기
                     			LendManager lendmanager = new LendManager();
-                    			lendmanager.update(); // 반납처리
+                    			lendmanager.update(); // 완료
                     			
                     			// 대출 이력 record.csv에 추가
-                    			MemberManager membermanager = new MemberManager();
-                    			int outputBookId = membermanager.search();
-                    			int outputMemberId
-                    			
-                    	        int  bookId = int outputBookId; // 일단 0으로 세팅, outputBookId 받아올거임
-                    	        int memberId = a; // 일단 0으로 세팅, outputMemberId 받아올거임
-                    	        
                     			TotalRecorder totalrecorder = new TotalRecorder();
                     			totalrecorder.add();
-                    			break;
+                    			break; //구현은 했는데..... 계속 bookId, memberId를 받아야 되는게 아쉽다
                     			
                     		case 2: // 2.반납 받기
                     			break;
