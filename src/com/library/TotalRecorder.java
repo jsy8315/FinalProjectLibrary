@@ -19,6 +19,7 @@ public class TotalRecorder implements Recorder {
 		// 연장횟수, 대출날짜(오늘날짜), 책 id, 회원 id, 기본 반납예정날짜
 		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\record.csv";
 		
+		//id값을 또 입력받아야함.....흠.....
         Scanner sc1 = new Scanner(System.in);
 		System.out.println("회원 id를 입력하세요");
 		int bookId = sc1.nextInt();
