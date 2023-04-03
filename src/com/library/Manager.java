@@ -14,5 +14,6 @@ public interface Manager {
 	
 	// Delete 회원 삭제, 도서 삭제, 대출내역수정, 반납내역수정
 	public void delete();
+
 	
 }
