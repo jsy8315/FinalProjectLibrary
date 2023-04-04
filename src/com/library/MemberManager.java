@@ -18,9 +18,10 @@ public class MemberManager implements Manager {
 	}
 
 	@Override
-	public void search() {
+	public int search() {
 		// 회원 조회 기능
 		// 회원이면 회원 id를 보여주고, 아니면 회원이 아닙니다, 문구를 출력
+		// 회원이면 memberId를 리턴함
 		Scanner sc = new Scanner(System.in);
 		System.out.println("회원 조회를 시작합니다.");
 		System.out.println("이름을 입력하세요 : ");
@@ -28,8 +29,8 @@ public class MemberManager implements Manager {
 		System.out.println("전화번호를 \"-\" 없이 입력하세요 : ");
 		String inputPhonenumber = sc.next(); // 전화번호 입력
 		FileManager filemanager = new FileManager(); //FileManager 클래스 인스턴스화
-		filemanager.memberIdSearch(inputName, inputPhonenumber); // FileManager의 memberIdSearch 메소드 호출
-		// outputMemberId를 리턴함
+		return filemanager.memberIdSearch(inputName, inputPhonenumber);
+		// memberId를 return함
 	}
 
 	@Override

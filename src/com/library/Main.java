@@ -30,12 +30,14 @@ public class Main {
                     			// 먼저, bookId, memberId 변수 생성
                     	        Scanner scanner = new Scanner(System.in);
                     	        int outputBookId = 0; // bookId 변수 생성
-                    	        int outputMemberId = 0; // memberId 변수 생성
                     	        
                     			// 1-1. 회원 조회, outputMemberId로 회원id 받아옴
                     			MemberManager membermanager = new MemberManager();
-                    			membermanager.search();
+                    			int outputMemberId1 = membermanager.search();
                     			// 만약 회원의 lendPossible이 0이면 "이미 대출 중인 도서가 있습니다"-->나중에 기능 추가
+                    			// 태근 코멘트 -> membermanager 결과 int값을 리턴받도록 해야됨
+                    		    // 회원아니면  outputMemberId = -1로 리턴하고, 
+                    		    // 회원이면 그 사람의 memberId를 outputMemberId로 리턴함
                     			
                     			// 1-1. 책 조회, outputBookId로 책id 받아옴
                     			BookManager bookmanager = new BookManager();
@@ -45,7 +47,7 @@ public class Main {
                     			// return받은 outputBookId, outputMemberId로 lendmanager ㄱㄱ
                     			
                     			LendManager lendmanager = new LendManager();
-                    			lendmanager.update(outputBookId, outputMemberId);
+                    			lendmanager.update(outputBookId, outputMemberId1);
                     			
                     			// 1-3. 대출 이력 record.csv에 추가
                     			TotalRecorder totalrecorder = new TotalRecorder();

@@ -14,7 +14,7 @@ public class FileManager implements Manager {
 	}
 
 	@Override
-	public void search() { //csv 파일에서 조회하기
+	public int search() { //csv 파일에서 조회하기
 	}
 
 	@Override
@@ -210,6 +210,9 @@ public class FileManager implements Manager {
 	public int memberIdSearch(String a, String b) { 
 		// member.csv을 열어서 회원번호를 조회하고, 반환하는 메서드 추가
 		// 키워드로 이름, 전화번호를 넣으면 (String a, String b) id를 찾아내줌
+	    // 회원아니면  outputMemberId = -1로 리턴하고, 
+	    // 회원이면 그 사람의 memberId를 outputMemberId로 리턴함
+		
 		int outputMemberId = -1; // 일단 outputMemberId를 -1로 설정
 		// file 경로 설정
 		String filePath = "C:\\Users\\Documents\\GitHub\\FinalProjectLibrary\\src\\com\\library\\member.csv";
@@ -256,7 +259,9 @@ public class FileManager implements Manager {
 	    if (outputMemberId == -1) { // 원하는 값이 없다면 오류 메시지 출력
 	        System.out.println("회원이 아닙니다.");
 	    }
-	    return outputMemberId;
+	    return outputMemberId; 
+	    // 회원아니면  outputMemberId = -1로 리턴하고, 
+	    // 회원이면 그 사람의 memberId를 outputMemberId로 리턴함
 	}
 	
 	public int booksIdSearch(String a, String b) { 
