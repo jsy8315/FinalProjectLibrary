@@ -15,6 +15,7 @@ public class FileManager implements Manager {
 
 	@Override
 	public int search() { //csv 파일에서 조회하기
+		return 0;
 	}
 
 	@Override

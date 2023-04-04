@@ -26,10 +26,6 @@ public class Main {
                     	
                     	switch (shouldContinue11Input) {
                     		case 1: // 1.대출 해주기
-                    			
-                    			// 먼저, bookId, memberId 변수 생성
-                    	        Scanner scanner = new Scanner(System.in);
-                    	        int outputBookId = 0; // bookId 변수 생성
                     	        
                     			// 1-1. 회원 조회, outputMemberId로 회원id 받아옴
                     			MemberManager membermanager = new MemberManager();
@@ -41,13 +37,13 @@ public class Main {
                     			
                     			// 1-1. 책 조회, outputBookId로 책id 받아옴
                     			BookManager bookmanager = new BookManager();
-                    			bookmanager.search();
+                    			int outputBookId1 = bookmanager.search();
                     			
                     			// 1-2. 대출처리
                     			// return받은 outputBookId, outputMemberId로 lendmanager ㄱㄱ
                     			
                     			LendManager lendmanager = new LendManager();
-                    			lendmanager.update(outputBookId, outputMemberId1);
+                    			lendmanager.update(outputBookId1, outputMemberId1);
                     			
                     			// 1-3. 대출 이력 record.csv에 추가
                     			TotalRecorder totalrecorder = new TotalRecorder();

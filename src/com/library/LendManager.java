@@ -10,7 +10,8 @@ public class LendManager implements Manager {
 	}
 
 	@Override
-	public void search() { //안쓸꺼임
+	public int search() { //안쓸꺼임
+		return 0;
 	}
 
 	public void update(int outputBookId, int outputMemberId) { 

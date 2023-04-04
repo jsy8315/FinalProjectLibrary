@@ -30,7 +30,8 @@ public class MemberManager implements Manager {
 		String inputPhonenumber = sc.next(); // 전화번호 입력
 		FileManager filemanager = new FileManager(); //FileManager 클래스 인스턴스화
 		return filemanager.memberIdSearch(inputName, inputPhonenumber);
-		// memberId를 return함
+	    // 회원아니면  outputMemberId = -1로 리턴하고, 
+	    // 회원이면 그 사람의 memberId를 outputMemberId로 리턴함
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class BookManager implements Manager {
 	}
 
 	@Override
-	public void search() { //R, 책 조회해서 id를 return해줌, 없으면 없다고 함
+	public int search() { //R, 책 조회해서 id를 return해줌, 없으면 없다고 함
 		// 책 조회 기능
 		// 근데 이 스캐너 기능 다 main으로 돌려야됨
 		Scanner sc = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class BookManager implements Manager {
 		System.out.println("저자 이름을 띄어 쓰기 없이 입력하세요 : ");
 		String inputAuthor = sc.next(); // 전화번호 입력
 		FileManager filemanager = new FileManager(); //FileManager 클래스 인스턴스화
-		filemanager.booksIdSearch(inputTitle, inputAuthor); // FileManager의 memberIdSearch 메소드 호출
+		return filemanager.booksIdSearch(inputTitle, inputAuthor); // FileManager의 memberIdSearch 메소드 호출
 	}
 
 	@Override
