@@ -11,7 +11,8 @@ public class ReturnManager implements Manager {
 	}
 
 	@Override
-	public void search() { //반납했는지 확인
+	public int search() {
+		return 0; //반납했는지 확인
 		// TODO Auto-generated method stub
 		
 	}
