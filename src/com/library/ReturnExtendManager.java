@@ -9,7 +9,8 @@ public class ReturnExtendManager implements Manager {
 	}
 
 	@Override
-	public void search() {
+	public int search() {
+		return 0;
 		// TODO Auto-generated method stub
 		
 	}

@@ -24,6 +24,7 @@ public class ReturnManager implements Manager {
 		MemberManager membermanager = new MemberManager();
 		membermanager.search();
 		
+		
 		// 2. 회원의 lendPossible을 0 -> 1으로
 		FileManager changingMemberlendpossible = new FileManager();
 		Scanner sc = new Scanner(System.in);
