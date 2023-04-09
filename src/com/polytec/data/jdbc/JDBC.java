@@ -18,7 +18,7 @@ public class JDBC {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String url = "jdbc:oracle:thin:@192.168.119.119:1521/dink";
             String user = "scott";
-            String passwd = "tiger";
+            String passwd = "tiger17";
             conn = DriverManager.getConnection(url, user, passwd);
             
             // 3. SQL 쿼리를 실행합니다.
