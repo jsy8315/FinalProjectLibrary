@@ -1,0 +1,103 @@
+--SQL구문 내에서 산술
+SELECT ENAME, COMM, COMM + 300 FROM EMP;
+
+--ALIAS, AS, 특수문자, 공백문자, 대소문자 구분이 필요한 경우 " " 사용
+SELECT ENAME, MGR Manager, SAL * 12 AS annual_SAL, COMM + 300 "Special Bonus" FROM EMP;
+
+--문자열 결합 작은 따옴표
+SELECT ENAME||'"s JOB is '||job as job_list FROM EMP;
+
+--숫자 타입과 문자 타입의 결합, 결합 타입은 문자로 형변환, TO_CHAR 써서 명확하게 해주는것 권고
+SELECT SAL, SAL * 100, SAL||'00', TO_CHAR(SAL)||'00' FROM EMP;
+
+--system의 현재 date(날짜와 시간)을 리턴
+SELECT SYSDATE FROM DUAL;
+
+--WHERE: 원하는 ROW를 조회하는 조건절
+SELECT DEPTNO, ENAME, SAL, JOB FROM EMP 
+    WHERE (DEPTNO, JOB, MGR) = ((10, 'MANAGER', '7839'));
+    
+--NVL : NULL 제어함수
+SELECT COMM, NVL(COMM, 0) FROM EMP;
+
+--DECODE 
+SELECT DECODE(C0MM, NULL, 0, COMM) AS NVL_SIMUL FROM EMP;
+
+--ASC는 오름차순, DESC는 내림차순
+SELECT DEPTNO, JOB, ENAME FROM EMP ORDER BY DEPTNO, JOB;
+
+--DISTINCT : 중복된 데이터를 필터링
+SELECT JOB FROM EMP;
+SELECT DISTINCT JOB FROM EMP;
+--DEPTNO, JOB 순서쌍의 중복을 제거
+SELECT DISTINCT DEPTNO, JOB FROM EMP;
+
+--BETWEEN 범위 연산자
+SELECT ENAME, SAL, HIREDATE FROM EMP WHERE SAL BETWEEN 1000 AND 2000;
+SELECT ENAME, SAL, HIREDATE FROM EMP WHERE ENAME BETWEEN 'C' AND 'K';
+
+--LIKE 정확한 값을 몰라도 찾을 수 있는 문자 패턴 매칭 연산자 : '%'는 0개 이상의 모든 문자, '_'는 1개의 모든 문자, 위치가 의미를 가짐
+SELECT ENAME FROM EMP WHERE ENAME LIKE 'A%';
+SELECT ENAME FROM EMP WHERE ENAME LIKE '%L%E%';
+SELECT ENAME FROM EMP WHERE ENAME LIKE '%LE%';
+SELECT ENAME FROM EMP WHERE ENAME LIKE '_A%';
+
+--IN 리스트 연산자 : 특정 열의 값이 여러 개 중 하나와 일치하는 경우에 해당 행을 반환함
+SELECT EMPNO, ENAME, JOB, DEPTNO FROM EMP WHERE (JOB, DEPTNO) IN (('MANAGER', 20),('CLERK', 20));
+
+--DECODE : 조건절 연산자, =만 사용
+SELECT DEPTNO, ENAME, DECODE(DEPTNO, 10, 'ACCOUNTING', 20, 'RESEARCH', 30, 'SALES', 'ETC') FROM EMP ORDER BY DEPTNO;
+
+--CASE :조건절, DECODE 연산자 기능 확장 & 성능 향상
+SELECT DEPTNO, ENAME, SAL,
+    CASE WHEN SAL >= 4800 THEN 'HIGH'
+        WHEN SAL BETWEEN 3000 AND 4799 THEN 'MID'
+        WHEN SAL <= 2999 THEN 'LOW'
+    ELSE 'EXTREMELY_LOW'
+    END AS SAL_GRADE
+FROM EMP
+ORDER BY DEPTNO;
+
+--ROWNUM : SELECT문에서 반환되는 ROW의 번호를 나타내는 유사 컬럼
+SELECT * FROM EMP WHERE ROWNUM <= 5;
+
+--함수, 함수는 중첩가능
+--SUBSTR(string, position, lengh): 지정한 위치positionㅇ에서 length길이만큼 부분 문자열을 반환
+SELECT ENAME, SUBSTR(ENAME, 2,3) FROM EMP;
+
+--INSTR : string에서 문자열(pattern)이 처음으로 나타나는 위치(position)를 반환하는 함수
+--INSTR(string, pattern, start_position, occurrence) : start_position은 검색을 시작할 위치를 나타내며, 기본값은 1, 
+--occurrence은 검색할 pattern이 몇번째로 나타나는지 지정하는 정수, 기본값은 1
+SELECT ENAME, INSTR(ENAME, 'A', 2, 1) FROM EMP;
+
+--LENGTH(string) : 문자열길이 반환
+SELECT LENGTH('대한민국'), LENGTH('ABCD') FROM DUAL;
+
+--REPLACE(string, pattern, replacement)
+SELECT REPLACE('Hello World', 'World', 'ELON') FROM DUAL;
+
+--TRIM : 문자열 양쪽 끝에 있는 공백 제거
+SELECT TRIM('   HELLO FUCKING TOM BOY    ') FROM DUAL;
+
+--ROUND 함수 : 반올림
+SELECT ROUND(42.1299, 2), ROUND(42.9, 0), ROUND(42.28, 1) FROM DUAL;
+
+--TRUNCATE 함수 : 절삭
+SELECT TRUNC(42.1299, 2), TRUNC(42.12, 1) FROM DUAL;
+
+--DATE TYPE
+SELECT SYSDATE FROM DUAL;
+
+--GROUP BY : 지준 컬럼으로 데이터 그룹핑 순서를 알면 코드 구성이 더 쉬워짐 : FROM WHERE GROUPBY HAVING SELECT ORDERBY
+SELECT DEPTNO, COUNT(*) FROM SCOTT.EMP GROUP BY DEPTNO;
+SELECT DEPTNO, AVG(SAL), SUM(SAL) FROM EMP GROUP BY DEPTNO;
+SELECT DEPTNO, AVG(SAL), SUM(SAL) FROM EMP GROUP BY DEPTNO ORDER BY DEPTNO;
+
+--HAVING : GROUP BY 결과 집합의 조건절
+SELECT DEPTNO, COUNT(*), SUM(SAL), ROUND(AVG(SAL), 1) FROM EMP GROUP BY DEPTNO;
+SELECT DEPTNO, COUNT(*), SUM(SAL), ROUND(AVG(SAL), 1) FROM EMP GROUP BY DEPTNO HAVING SUM(SAL) >= 9000;
+SELECT DEPTNO, ROUND(AVG(SAL), 1), SUM(SAL) FROM EMP WHERE DEPTNO IN (10, 20)
+GROUP BY DEPTNO
+HAVING SUM(SAL) >= 9000
+ORDER BY DEPTNO DESC;
+
