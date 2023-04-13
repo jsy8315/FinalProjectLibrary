@@ -12,7 +12,7 @@ public class Menu {
 	// 메인 while문 화면의 메뉴
 	int shouldContinue1Menu() { 
 		System.out.println("도서 대출 프로그램을 시작합니다");
-		System.out.println("1.대출시작    2.회원관리    3.도서관리    4.종료");
+		System.out.println("1.대출/반납 업무 시작    2.회원관리    3.도서관리    4.종료");
 		int shouldContinue1MenuInput = sc.nextInt();
 		return shouldContinue1MenuInput;
 	}

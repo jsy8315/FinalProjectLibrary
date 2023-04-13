@@ -10,53 +10,79 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         boolean shouldContinue1 = true;
 
-        while (shouldContinue1) { // 메인 while문 시작
+        while (shouldContinue1) { // 메인 while문 시작, 메인 while문을 돌리면서 진행이 되게끔 했음
             Menu firstMenu = new Menu(); 
             // "도서 대출 프로그램을 시작합니다"
-            // "1.대출시작    2.회원관리    3.도서관리		4.종료"
+            // "1.대출/반납 업무 시작    2.회원관리    3.도서관리    4.종료"
             int shouldContinue1MenuInput = firstMenu.shouldContinue1Menu();
 
             switch (shouldContinue1MenuInput) {
             
-                case 1: // 1.대출 시작
+                case 1: // 1.대출/반납 업무 시작
                     boolean shouldContinue11 = true; //메인 while문 안의 while문 내 첫번째 while문: 11
-                    while (shouldContinue11) {
+                    while (shouldContinue11) { 
                         Menu loanMenu = new Menu();
                     	int shouldContinue11Input = loanMenu.shouldContinue11Menu();
+                    	// "1.대출 해주기    2.반납 받기    3.반납 날짜 확인    4.반납 기한 연장   5.이전화면"
                     	
                     	switch (shouldContinue11Input) {
                     		case 1: // 1.대출 해주기
                     	        
-                    			// 1-1. 회원 조회, outputMemberId로 회원id 받아옴
-                    			MemberManager membermanager = new MemberManager();
-                    			int outputMemberId1 = membermanager.search();
-                    			// 만약 회원의 lendPossible이 0이면 "이미 대출 중인 도서가 있습니다"-->나중에 기능 추가
-                    			// 태근 코멘트 -> membermanager 결과 int값을 리턴받도록 해야됨
-                    		    // 회원아니면  outputMemberId = -1로 리턴하고, 
-                    		    // 회원이면 그 사람의 memberId를 outputMemberId로 리턴함
+                    			// 1-1. 회원 조회
+                    				// 회원 명단에 있는지 없는지 (없으면 전단계로 보냄)
+                    				// 회원 명단에 있다면 대출이 가능한지 안가능한지 (불가능하면 전단계로 보냄)
+                    				// 즉, 회원 AND 대출 중이 아니면 (조건을 설정하여 테이블 조회)->  회원번호를 RETURN
+                    				// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
                     			
-                    			// 1-1. 책 조회, outputBookId로 책id 받아옴
-                    			BookManager bookmanager = new BookManager();
-                    			int outputBookId1 = bookmanager.search();
+                    			// 1-2. 책 조회
+                    				// 책을 조회해서 명단에 있는지 없는지 확인
+                    				// 대출이 가능한지 불가능한지 확인
+                    				// 즉, 책이 있고 대출이 가능하다면 (조건을 설정하여 테이블 조회) -> 책의 번호를 RETURN
+                    			// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
                     			
-                    			// 1-2. 대출처리
-                    			// return받은 outputBookId, outputMemberId로 lendmanager ㄱㄱ
                     			
-                    			LendManager lendmanager = new LendManager();
-                    			lendmanager.update(outputBookId1, outputMemberId1);
+                    			// 1-3. 대출 처리 
+                    				// 회원 테이블에 빌린 책 번호, 오늘 날짜, 반납 예정 날짜 추가, 회원 대출 중 표시 추가
+                    				// 책 테이블에 빌린 회원 번호, 오늘 날짜. 반납 예쩡 날짜 추가, 대출 중 표시 추가
                     			
-                    			// 1-3. 대출 이력 record.csv에 추가
-                    			TotalRecorder totalrecorder = new TotalRecorder();
-                    			totalrecorder.add();
-                    			break; //구현은 했는데..... 계속 bookId, memberId를 받아야 되는게 아쉽다->성공
+                    			// 1-4. 대출 이력 record 테이블에 추가
+                    			
+                    			break;
                     			
                     		case 2: // 2.반납 받기
+                    			
+                    			// 2-1. 회원 조회,
+                					// 회원 명단에 있는지 없는지 (없으면 전단계로 보냄)
+                					// 회원 명단에 있다면 반납이 가능한지 안가능한지 (불가능하면 전단계로 보냄)
+                					// 즉, 회원 AND 대출 중이면 (조건을 설정하여 테이블 조회)->  회원번호를 RETURN
+                					// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
+                    			
+                    			// 2-2. 대출 중인 책을 조회
+                					// 책을 조회해서 명단에 있는지 없는지 확인
+                					// 대출이 가능한지 불가능한지 확인
+                					// 즉, 책이 있고 대출이 가능하다면 (조건을 설정하여 테이블 조회) -> 책의 번호를 RETURN
+                    				// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
+                    			
+                    			// 2-3. 반납 처리
+                					// 회원 테이블에 빌린 책 번호, 오늘 날짜, 반납 예정 날짜 추가, 회원 대출 중 표시 추가
+                					// 책 테이블에 빌린 회원 번호, 오늘 날짜. 반납 예정 날짜 추가, 대출 중 표시 추가
+                    			
+                    			// 2-4. 반납 이력 record 테이블에 추가
                     			break;
                     			
                     		case 3: // 반납 날짜 확인
+                    			// 3-1. 회원 조회,
+                					// 회원 명단에 있는지 없는지 (없으면 대상자가 아니라며 전단계로 보냄)
+                					// 회원 명단에 있다면 반납할 책이 있는지 없는지 확인 (없으면 전단계로 보냄)
+                			
+                    			// 3-2. 대출 중인 책을 조회
+                    				// 회원 번호를 사용해 RECORD 테이블
+                    			
+                    			// 3-3. 반납 날짜 조회
                     			break;
                     			
                     		case 4: // 반납 기한 연장
+                    			// 반납연장은 대출 중인 상태 AND 연체가 아닐때 가능
                     			break;
                     			
                     		case 5: // 이전화면으로 돌아가기
