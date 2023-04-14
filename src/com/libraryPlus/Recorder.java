@@ -9,7 +9,7 @@ public interface Recorder {
 	public void add();
 	
 	// Read 대출반납 이력조회
-	public void search();
+	public int search();
 	
 	// Update 반납처리
 	public void update();

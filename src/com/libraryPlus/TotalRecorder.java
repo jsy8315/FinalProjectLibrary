@@ -51,14 +51,12 @@ public class TotalRecorder implements Recorder {
 	}
 
 	@Override
-	public void search() {	// Read 대출반납 이력조회
-		// 기록 id return
+	public int search() {	//근데 얘는 뭘 리턴해야되지
+		return 0;
 	}
 
 	@Override
-	public void update() {	// Update 대출반납 이력수정(연장)
-		// 반납 날짜 기록
-		// 연장횟수, 대출날짜(오늘날짜), 책 id, 회원 id, 기본 반납예정날짜 , 실제 반납 날짜 기록
+	public void update() {	
 	}
 	
 	public void extendupdate() { // 연장처리
