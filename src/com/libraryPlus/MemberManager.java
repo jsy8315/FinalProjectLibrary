@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // 회원 관리
-public class MemberManager implements Manager {
+public  class MemberManager implements Manager {
 
 	@Override
 	public void add() {
@@ -28,10 +28,8 @@ public class MemberManager implements Manager {
 		String inputName = sc.next(); // 이름 입력
 		System.out.println("전화번호를 \"-\" 없이 입력하세요 : ");
 		String inputPhonenumber = sc.next(); // 전화번호 입력
-		FileManager filemanager = new FileManager(); //FileManager 클래스 인스턴스화
-		return filemanager.memberIdSearch(inputName, inputPhonenumber);
-	    // 회원아니면  outputMemberId = -1로 리턴하고, 
-	    // 회원이면 그 사람의 memberId를 outputMemberId로 리턴함
+		return 0;
+	    
 	}
 
 	@Override

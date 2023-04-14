@@ -5,10 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+public class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean shouldContinue1 = true;
+        
+        MemberManager memberMamanager1 = new MemberManager(); //MemberManager 클래스를 사용해서 인스턴스 생성
 
         while (shouldContinue1) { // 메인 while문 시작, 메인 while문을 돌리면서 진행이 되게끔 했음
             Menu firstMenu = new Menu(); 
@@ -33,7 +35,8 @@ public class Main {
                     				// 회원 명단에 있다면 대출이 가능한지 안가능한지 (불가능하면 전단계로 보냄)
                     				// 즉, 회원 AND 대출 중이 아니면 (조건을 설정하여 테이블 조회)->  회원번호를 RETURN
                     				// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
-                    			
+                    			int memberNumber = memberMamanager1.search();
+                    			// 조회하여 위 조건으로 만족하면 회원 번호를, 조건을 만족하지 못하면 0을 리턴
                     			// 1-2. 책 조회
                     				// 책을 조회해서 명단에 있는지 없는지 확인
                     				// 대출이 가능한지 불가능한지 확인
@@ -71,8 +74,7 @@ public class Main {
                     			break;
                     			
                     		case 3: // 반납 날짜 확인
-                    			// 3-1. 회원 조회,
-                					// 회원 명단에 있는지 없는지 (없으면 대상자가 아니라며 전단계로 보냄)
+                    			// 3-1. 회원 조회,V
                 					// 회원 명단에 있다면 반납할 책이 있는지 없는지 확인 (없으면 전단계로 보냄)
                 			
                     			// 3-2. 대출 중인 책을 조회
