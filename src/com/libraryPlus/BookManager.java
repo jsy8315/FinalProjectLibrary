@@ -7,12 +7,11 @@ public class BookManager implements Manager {
 
 	@Override
 	public void add() { // 책 새로 등록
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int search() { 
+	public int search() { //arraylist 형태로 return하기
 		// 제목과 저자를 입력하면 책 정보 행 통째로 반환
 		Scanner sc = new Scanner(System.in);
 		System.out.println("책 조회를 시작합니다.");

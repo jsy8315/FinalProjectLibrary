@@ -4,6 +4,8 @@ START WITH 1
 INCREMENT BY 1
 NOCACHE;
 
+DROP SEQUENCE BOOK_ID_SEQ;
+
 DROP TABLE BOOK;
 --BOOK Å×ÀÌºí ¸¸µé±â
 CREATE TABLE BOOK (
@@ -11,12 +13,15 @@ CREATE TABLE BOOK (
     TITLE           VARCHAR2(1000)     NOT NULL, --TITLEÀº ÀÔ·ÂÇØÁà¾ßÇÔ
     AUTHOR          VARCHAR2(1000)     NOT NULL, --AUTHOR´Â ÀÔ·ÂÇØÁà¾ßÇÔ
     PUBLISHER       VARCHAR2(1000)     NOT NULL, --PUBLISHER´Â ÀÔ·ÂÇØÁà¾ßÇÔ
-    LENDPOSSIBLE    VARCHAR2(10)       DEFAULT 1    --´ëÃâÀÌ °¡´ÉÇÏ¸é 1, ºÒ°¡´ÉÇÏ¸é 0ÀÌ°í µðÆúÆ® 1·Î ¼³Á¤
+    LENDPOSSIBLE    VARCHAR2(100)      DEFAULT '´ëÃâ°¡´É'    --´ëÃâÀÌ °¡´ÉÇÏ¸é "´ëÃâ°¡´É", ºÒ°¡´ÉÇÏ¸é "´ëÃâºÒ°¡"ÀÌ°í µðÆúÆ® "´ëÃâ°¡´É"·Î ¼³Á¤
     );
     
 SELECT * FROM BOOK;
+
+--BOOK Å×ÀÌºí¿¡
 --1,EPL¿¡¼­°ñ³Ö´Â¹ý,¿¤¸µÈ¦¶õµå,¸ÇÃ¼½ºÅÍ½ÃÆ¼,1
 INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('EPL¿¡¼­ °ñ ³Ö´Â ¹ý', '¿¤¸µ È¦¶õµå', '¸ÇÃ¼½ºÅÍ ½ÃÆ¼');
+COMMIT;
 --2,EPL¿¡¼­¾î½Ã½ºÆ®ÇÏ´Â¹ý, ÄÉºó´õºê¶óÀ§³Ê, ¸ÇÃ¼½ºÅÍ½ÃÆ¼,1
 --3,¶ó¸®°¡¿¡¼­°ñ³Ö´Â¹ý,·Îº£¸£Æ®·¹¹ÝµµÇÁ½ºÅ°,FC¹Ù¸£¼¿·Î³ª,1
 --4,¶ó¸®°¡¿¡¼­¾î½Ã½ºÆ®ÇÏ´Â¹ý,¾ÓÅõ¾È±×¸®Áî¸¸,AT¸¶µå¸®µå,1
@@ -29,14 +34,16 @@ INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('EPL¿¡¼­ °ñ ³Ö´Â ¹ý', '¿¤¸µ È
 --11,K¸®±×¿¡¼­°ñ³Ö´Â¹ý,Á¶±Ô¼º,ÀüºÏÇö´ë¸ðÅÍ½º,1
 --12,K¸®±×¿¡¼­¾î½Ã½ºÆ®ÇÏ´Â¹ý,ÀÌ±âÁ¦,¼ö¿ø»ï¼ººí·çÀ®Áî,1
 
+DROP SEQUENCE MEMBER_ID_SEQ;
 --MEMBER Å×ÀÌºíÀÇ ID´Â µû·Î ÀÔ·ÂÇÏÁö ¾Ê¾Æµµ ÀÚµ¿À¸·Î ºÎ¿©µÇ¸é ÁÁ°ÚÀ½ -> SEQUENCE ¾²ÀÚ
 CREATE SEQUENCE MEMBER_ID_SEQ
 START WITH 1
 INCREMENT BY 1
 NOCACHE;
 
+
 --MEMBER Å×ÀÌºí ¸¸µé±â
---DROP TABLE MEMBER;
+DROP TABLE MEMBER;
 
 CREATE TABLE MEMBER (
     ID              NUMBER(10)       DEFAULT MEMBER_ID_SEQ.NEXTVAL PRIMARY KEY, --µµ¼­°üÀÇ È¸¿øID¸¦ °íÀ¯ÀÇ °ªÀ¸·Î ÁöÁ¤   
@@ -45,11 +52,13 @@ CREATE TABLE MEMBER (
     PHONENUMBER     VARCHAR2(12)     CONSTRAINT PHONENUMBER_CK CHECK (LENGTH(PHONENUMBER) = 11) UNIQUE, --UNIQUE·Î ÇÏ¸é, ÀÚ±â ÆùÀÌ ¾ø´Â ÀÚ³à°¡ ºÎ¸ð Æù¹øÈ£¸¦ ÀÔ·ÂÇÒ¼ö¾ø±äÇÔ
     BIRTHDAY        DATE             CONSTRAINT BIRTHDAY_CK CHECK (BIRTHDAY = TO_DATE(TO_CHAR(BIRTHDAY, 'YYYY/MM/DD'), 'YYYY/MM/DD')),
     MEMBERDAY       DATE             DEFAULT SYSDATE, --¿À´Ã ³¯Â¥·Î µðÆúÆ®
-    LENDPOSSIBLE    VARCHAR2(10)     DEFAULT 1  --´ëÃâÀÌ °¡´ÉÇÏ¸é 1, ºÒ°¡´ÉÇÏ¸é 0ÀÌ°í µðÆúÆ® 1·Î ¼³Á¤
+    LENDPOSSIBLE    VARCHAR2(100)     DEFAULT '´ëÃâ°¡´ÉÈ¸¿ø'  --´ëÃâÀÌ °¡´ÉÇÏ¸é '´ëÃâ°¡´ÉÈ¸¿ø', ºÒ°¡´ÉÇÏ¸é '´ëÃâºÒ°¡È¸¿ø'ÀÌ°í µðÆúÆ® 1·Î ¼³Á¤
     );
     
 SELECT * FROM MEMBER;
 
+INSERT INTO MEMBER(NAME, ADDRESS, PHONENUMBER, BIRTHDAY) VALUES ('¼ÕÈï¹Î', '°­¿øµµ ÃáÃµ½Ã', '01098890001', '1992/07/08');
+COMMIT;
 --´ëÃâ Å×ÀÌºíÀÇ ID´Â µû·Î ÀÔ·ÂÇÏÁö ¾Ê¾Æµµ ÀÚµ¿À¸·Î ºÎ¿©µÇ¸é ÁÁ°ÚÀ½ -> SEQUENCE ¾²ÀÚ
 CREATE SEQUENCE LEND_ID_SEQ
 START WITH 1
