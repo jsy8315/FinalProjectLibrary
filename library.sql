@@ -4,7 +4,7 @@ START WITH 1
 INCREMENT BY 1
 NOCACHE;
 
---DROP TABLE BOOK;
+DROP TABLE BOOK;
 --BOOK 테이블 만들기
 CREATE TABLE BOOK (
     ID              NUMBER(10)         DEFAULT BOOK_ID_SEQ.NEXTVAL PRIMARY KEY,--도서관에 존재하는 책ID를 고유의 값으로 지정
@@ -15,6 +15,19 @@ CREATE TABLE BOOK (
     );
     
 SELECT * FROM BOOK;
+--1,EPL에서골넣는법,엘링홀란드,맨체스터시티,1
+INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('EPL에서 골 넣는 법', '엘링 홀란드', '맨체스터 시티');
+--2,EPL에서어시스트하는법, 케빈더브라위너, 맨체스터시티,1
+--3,라리가에서골넣는법,로베르트레반도프스키,FC바르셀로나,1
+--4,라리가에서어시스트하는법,앙투안그리즈만,AT마드리드,1
+--5,분데스리가에서골넣는법,니클라스퓔크루,베르더브레멘,,1
+--6,분데스리가에서어시스트하는법,랜달콜로무아니,프랑크푸르트,1
+--7,세리에A에서골넣는법,빅터오시멘,나폴리,1
+--8,세리에A에서어시스트하는법,크비차크바라트스켈리아,나폴리,1
+--9,리그앙에서골넣는법,조나단데이빗,릴,1
+--10,리그앙에서어시스트하는법,리오넬메시,파리생제르맹,1
+--11,K리그에서골넣는법,조규성,전북현대모터스,1
+--12,K리그에서어시스트하는법,이기제,수원삼성블루윙즈,1
 
 --MEMBER 테이블의 ID는 따로 입력하지 않아도 자동으로 부여되면 좋겠음 -> SEQUENCE 쓰자
 CREATE SEQUENCE MEMBER_ID_SEQ
@@ -42,6 +55,7 @@ CREATE SEQUENCE LEND_ID_SEQ
 START WITH 1
 INCREMENT BY 1
 NOCACHE;
+
 --대출 테이블 만들기
 CREATE TABLE LEND (
     ID                                       NUMBER(10)       DEFAULT LEND_ID_SEQ.NEXTVAL PRIMARY KEY,

@@ -19,7 +19,8 @@ public  class MemberManager implements Manager {
 
 	@Override
 	public int search() { // DB SELECT
-		// 회원 이름, 회원 전화번호를 입력해서 맞으면 행 전체 출력
+		// 회원 이름, 회원 전화번호를 입력하고
+		// 이 입력값이 맞으면 행 전체 출력
 		Scanner sc = new Scanner(System.in);
 		System.out.println("회원 조회를 시작합니다.");
 		System.out.println("이름을 입력하세요 : ");
