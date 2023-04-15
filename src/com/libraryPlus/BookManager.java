@@ -95,14 +95,45 @@ public class BookManager implements Manager {
 	
 	public int searchResult() {
 		// 책 제목과 저자를 입력하고
-		// 보유 중인 책이 아니면 0, 보유 중인 책이고 대출이 가능하면 1, 보유 중이고 현재 대출중이면(대출이 불가능하면) 2을 반환
-		Scanner sc = new Scanner(System.in);
-		System.out.println("책 조회를 시작합니다.");
-		System.out.println("제목을 입력하세요 : ");
-		String inputTitle = sc.next(); // 제목 입력
-		System.out.println("저자 이름을 띄어 쓰기 없이 입력하세요 : ");
-		String inputAuthor = sc.next(); // 전화번호 입력
-		// 보유 중인 책이 아니면 0, 보유 중인 책이고 대출이 가능하면 1, 보유 중이고 현재 대출중이면(대출이 불가능하면) 2을 반환
+		// 보유 중인 책이 아니면 0, 안되면 0을 반환
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null; // ResultSet 객체는 DB에서 검색한 결과를 담은 객체
+	    
+	    System.out.println("도서 대출 가능 조회를 시작합니다.");
+	    
+	    System.out.println("책 제목을 입력하세요 : ");
+	    String title = scanner.nextLine();
+	    System.out.println("책 저자를 입력하세요 : ");
+	    String author = scanner.nextLine();
+	    
+		// 회원이 아니면 0, 회원이고 대출이 가능하면 1, 회원이고 현재 대출중이면(대출이 불가능하면) 2을 반환
+		try {
+	        conn = Connector.getConnection();
+
+	        String sql = "SELECT * FROM MEMBER WHERE TITLE = ? AND AUTHOR = ? AND LENDPOSSIBLE = '대출가능'";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, title); // 첫 번째 물음표에 title 값을 바인딩
+	        pstmt.setString(2, author); // 두 번째 물음표에 author 값을 바인딩
+	        rs = pstmt.executeQuery(); // SQL 쿼리를 실행하고, 그 결과로 생성된 ResultSet 객체를 반환함
+
+	        if (rs.next()) { // ResultSet 객체는 DB에서 검색한 결과를 담은 객체, next() 메소드를 호출하여 각 행을 하나하나 읽음
+	            int ID = rs.getInt("ID");
+	            String TITLE = rs.getString("TITLE");
+	            String AUTHOR = rs.getString("AUTHOR");
+	            String LENDPOSSIBLE = rs.getString("LENDPOSSIBLE");
+	            System.out.println("대출 가능한 도서입니다.");
+	            return 0;
+	        } else {
+	        	System.out.println("등록되지 않은 도서거나, 대출 중인 도서입니다.");
+	        	return 1;
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        Connector.close(conn);
+	    }
 		return 0;
 	}
 	

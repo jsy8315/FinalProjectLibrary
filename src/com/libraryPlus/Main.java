@@ -36,20 +36,14 @@ public class Main{
                     			// 1-1. 회원 조회 MemberManager class 이용
                     				// 회원 명단에 있는지 없는지 (없으면 전단계로 보냄)
                     				// 회원 명단에 있다면 대출이 가능한지 안가능한지 (불가능하면 전단계로 보냄)
-                    			
                     				// 즉, 회원 AND 대출 중이 아니면 (조건을 설정하여 테이블 조회)->  회원번호를 RETURN
                     				// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
                     			int memberNumber1 = memberManager1.searchResult(); //MemberManager를 통해 회원 조회
-                    			// 회원이 아니면 0, 회원이고 대출이 가능하면 1, 회원이고 현재 대출중이면(대출이 불가능하면) 2을 반환
                     			
                     			if (memberNumber1 == 1) {
                     				System.out.println("대출 가능한 회원입니다."); //1-2 단계로 넘어가기
-                    			} else if (memberNumber1 == 2){
-                    				System.out.println("대출 불가 회원입니다. 현재 대출 중인 도서가 존재합니다. 이전화면으로 돌아갑니다.");
-                    				shouldContinue11 = false; // 수정: shouldContinue 변수를 true로 변경
-                                    break; // shouldContinue11 while문 탈출
-                    			} else {
-                    				System.out.println("회원이 아닙니다. 대출을 원하면 회원가입을 먼저 진행해주세요. 이전화면으로 돌아갑니다.");
+                    			}  else {
+                    				System.out.println("회원이 아니거나, 이미 대출 중인 도서가 있습니다. 이전화면으로 돌아갑니다.");
                     				shouldContinue11 = false; // 수정: shouldContinue 변수를 true로 변경
                                     break; // shouldContinue11 while문 탈출
                     			};
@@ -57,32 +51,28 @@ public class Main{
                     			// 1-2. 책 조회 BookManager class 이용
                     				// 책을 조회해서 명단에 있는지 없는지 확인
                     				// 대출이 가능한지 불가능한지 확인
-                    				// 즉, 책이 있고 대출이 가능하다면 (조건을 설정하여 테이블 조회) -> 책의 번호를 RETURN
                     			// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
                     			int bookNumber1 = bookManager1.searchResult(); //bookManager를 통해 회원 조회
                     			
                     			// 보유 중인 책이 아니면 0, 보유 중인 책이고 대출이 가능하면 1, 보유 중이고 현재 대출중이면(대출이 불가능하면) 2을 반환
                     			if (bookNumber1 == 1) {
                     				System.out.println("대출 가능한 도서입니다.");
-                    			} else if (bookNumber1 == 2){
-                    				System.out.println("대출 불가 도서 : 현재 대출 중. 이전화면으로 돌아갑니다.");
-                    				shouldContinue11 = false; // 수정: shouldContinue 변수를 true로 변경
-                                    break; // shouldContinue11 while문 탈출
-                    			} else {
-                    				System.out.println("보유 중인 도서가 아닙니다. 이전화면으로 돌아갑니다.");
+                    			} 
+                    			else {
+                    				System.out.println("보유 중인 도서가 아니거나, 대출 중인 도서입니다. 이전화면으로 돌아갑니다.");
                     				shouldContinue11 = false; // 수정: shouldContinue 변수를 true로 변경
                                     break; // shouldContinue11 while문 탈출
                     			};
                     			
-                    			// 1-3. 대출 처리 (회원 테이블, 책 테이블 업데이트) TotalRecorder 사용
-                    				// 회원 테이블에 빌린 책 번호, 오늘 날짜, 반납 예정 날짜 추가, 회원 대출 중 표시 추가
-                    				// 책 테이블에 빌린 회원 번호, 오늘 날짜. 반납 예쩡 날짜 추가, 대출 중 표시 추가
+                    			// 1-3. 대출 처리 (회원 테이블, 책 테이블 업데이트)
                     			System.out.println("대출 처리를 시작합니다.");
+                    			
+                    			// 회원테이블에서 대출가능회원 -> 대출불가회원 으로 바꾸기
+                    			// 북테이블에서 대출가능 -> 대출불가 로 바꾸기
                     			lendManager1.update();
                     			
                     			// 1-4. 대출 처리 (대출 테이블 업데이트)		LendManager 사용
-                    				// 대출 테이블 업데이트 하기(대출 테이블에 기록하기)
-                    			totalRecorder1.add();
+                    			lendManager1.add(); // lend 테이블에 행 삽입하기
                     			System.out.println("대출처리가 완료되었습니다.");
                     			
                     			// 1-5. 반납 날짜 알려주기
@@ -104,6 +94,7 @@ public class Main{
                     			// 회원이 아니면 0, 회원이고 대출이 가능하면 1, 회원이고 현재 대출중이면(대출이 불가능하면) 2을 반환
                     			System.out.println("반납을 진행합니다. 먼저, 회원 조회를 시작합니다.");
                     			int memberID = memberManager1.searchID(); //MemberManager를 통해 회원 조회
+                    			
                     			int bookID = bookManager1.searchID(); //MemberManager를 통해 회원 조회
                     			
                     			// 대출 테이블을 조회하여 memberID가 bookID가 일치하고 대출 중이면 1, 둘이 일치하지 않으면 0 반환
