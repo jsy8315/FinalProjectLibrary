@@ -33,7 +33,7 @@ public class Menu {
 	
 	public int shouldContinue13Menu() { 
 		System.out.println("도서관리를 시작합니다.");
-		System.out.println("1.도서 검색   2.도서 추가   3.도서 삭제		4.대출 가능한 책 목록 확인		5.이전화면");
+		System.out.println("1.도서 검색   2.도서 추가		3.도서 삭제	4.대출 가능한 책 목록 확인		5.이전화면");
 		int shouldContinue13MenuInput = sc.nextInt();
 		return shouldContinue13MenuInput;
 	}

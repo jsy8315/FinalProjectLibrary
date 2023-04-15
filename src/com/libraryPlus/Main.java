@@ -180,11 +180,12 @@ public class Main{
                     	switch (shouldContinue13Input) {
                     		case 1: // 3-1. 도서 검색
                     			bookManager1.search();
-                    			System.out.println("도서 검색을 마치고 이전화면으로 돌아갑니다.\n");
+                    			System.out.println("검색을 마치고 이전화면으로 돌아갑니다.\n");
                                 break; // shouldContinue13 while문 탈출
                     			
                     		case 2: // 3-2. 도서 추가
                     			bookManager1.add();
+                    			System.out.println("도서가 추가되었습니다. 이전화면으로 돌아갑니다.\n");
                                 break; // shouldContinue13 while문 탈출
                     			
                     		case 3: // 3-3. 도서 삭제
