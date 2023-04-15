@@ -104,6 +104,7 @@ public  class MemberManager implements Manager {
 	    ResultSet rs = null; // ResultSet 객체는 DB에서 검색한 결과를 담은 객체
 	    
 	    System.out.println("회원 대출 가능 조회를 시작합니다.");
+	    
 	    System.out.println("회원 이름을 입력하세요 : ");
 	    String name = scanner.nextLine();
 	    System.out.println("회원 전화번호를 입력하세요 예시) 01098890001 : ");
