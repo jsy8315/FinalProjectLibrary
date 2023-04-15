@@ -190,10 +190,12 @@ public class Main{
                     			
                     		case 3: // 3-3. 도서 삭제
                     			bookManager1.delete();
+                    			System.out.println("도서가 삭제되었습니다. 이전화면으로 돌아갑니다.\n");
                                 break; // shouldContinue13 while문 탈출
                                 
                     		case 4: // 3-4. 대출 가능한 책 목록 확인
-                    			bookManager1.delete();
+                    			bookManager1.searchLendPossibleBook();
+                    			System.out.println("대출 가능한 책 목록 조회를 완료하였습니다. 이전화면으로 돌아갑니다.\n");
                                 break; // shouldContinue13 while문 탈출
                                 
                     		case 5: // 3-5. 이전화면
