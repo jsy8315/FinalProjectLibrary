@@ -140,7 +140,7 @@ public class Main{
                     }
                     break;
 
-                case 2: // 2.회원관리 
+                case 2: // 2.회원관리 		"1.회원확인    2.회원가입    3.회원삭제    4.이전화면"
                     boolean shouldContinue12 = true;
                     while (shouldContinue12) { //메인 while문 안의 while문 내 두번째 while문: 12
                         Menu memberMenu = new Menu();
@@ -150,16 +150,19 @@ public class Main{
                             case 1:
                             	// 1.회원 조회 SELECT
                             	memberManager1.search();
+                            	System.out.println("회원조회가 완료되었습니다. 이전화면으로 돌아갑니다.");
                                 break;
 
                             case 2:
                                 // 2.회원가입 INSERT
                             	memberManager1.add();
+                            	System.out.println("회원가입이 완료되었습니다. 이전화면으로 돌아갑니다.");
                                 break;
 
                             case 3:
                                 // 3.회원삭제 DELETE
                             	memberManager1.delete();
+                            	System.out.println("회원삭제가 완료되었습니다. 이전화면으로 돌아갑니다.");
                                 break;
 
                             case 4:

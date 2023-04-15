@@ -26,7 +26,7 @@ public class Menu {
 	
 	public int shouldContinue12Menu() { // 두번째 while문에서, 2.회원관리 다음의 메뉴
 		System.out.println("회원관리를 시작합니다.");
-		System.out.println("1.회원확인    2.회원가입    3.회원삭제    4.이전화면 ");
+		System.out.println("1.회원확인    2.회원가입    3.회원삭제    4.이전화면");
 		int shouldContinue12MenuInput = sc.nextInt();
 		return shouldContinue12MenuInput;
 	}
