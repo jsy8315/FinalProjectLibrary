@@ -43,7 +43,7 @@ public class Main{
                     			// 회원이 아니면 0, 회원이고 대출이 가능하면 1, 회원이고 현재 대출중이면(대출이 불가능하면) 2을 반환
                     			
                     			if (memberNumber1 == 1) {
-                    				System.out.println("대출 가능한 회원입니다.");
+                    				System.out.println("대출 가능한 회원입니다."); //1-2 단계로 넘어가기
                     			} else if (memberNumber1 == 2){
                     				System.out.println("대출 불가 회원입니다. 현재 대출 중인 도서가 존재합니다. 이전화면으로 돌아갑니다.");
                     				shouldContinue11 = false; // 수정: shouldContinue 변수를 true로 변경

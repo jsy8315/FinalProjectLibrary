@@ -1,4 +1,4 @@
-id,name,address,phonenumber,birthday,memberday,lendPossible
+id,name,address,phonenumber,birthday,memberday(오늘날짜),현재상태(대출 가능은 1, 현재 대출중은 0)
 1,강수현,인천,01098890001,1994/06/01,2023/03/01,2023/03/26,1
 2,강수근,서울,01098890002,1994/06/02,2023/03/02,2023/03/26,1
 3,강수환,부산,01098890003,1994/06/03,2023/03/03,2023/03/26,1
