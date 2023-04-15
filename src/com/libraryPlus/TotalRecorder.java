@@ -51,7 +51,7 @@ public class TotalRecorder implements Recorder {
 	}
 
 	@Override
-	public int search(memberID, bookID) {
+	public int search() {
 		// 대출 테이블을 조회하여 memberID가 빌린 책의 bookID가 일치하고 대출 중이면 1, 둘이 일치하지 않으면 0 반환
 		return 0;
 	}

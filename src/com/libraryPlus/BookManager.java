@@ -17,39 +17,50 @@ public class BookManager implements Manager {
 	}
 
 	@Override
-	public void search() { //arraylist 형태로 return하기
-		Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        
-        System.out.println("책 제목을 입력하세요 : ");
-        String title = scanner.next();
-        System.out.println("책 저자를 입력하세요 : ");
-        String author = scanner.next();
-        
-        
-        try {
-            conn = Connector.getConnection();
-            
-            String sql = "SELECT * FROM BOOK WHERE TITLE = AND AUTHOR = ";
-            pstmt = conn.prepareStatement(sql);
-            rs = pstmt.executeQuery();
-            
-            while (rs.next()) {
-                int ISBN = rs.getInt("ISBN");
-                String TITLE = rs.getString("TITLE");
-                String AUTHOR = rs.getString("AUTHOR");
-                Date P_Date = rs.getDate("P_DATE");
-                String state = rs.getString("STATE");
-                System.out.println("ISBN: " + ISBN + ", TITLE: " + TITLE + ", AUTHOR: " + AUTHOR + ", P_Date: " + P_Date + ", STATE: " + state);
-            }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            Connector.close(conn);
-        }
-    }
+	public void search() { // 행 통째로 반환하기
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null; // ResultSet 객체는 DB에서 검색한 결과를 담은 객체
+	    
+
+	    // 즉, rs 객체를 이용해서 데이터베이스에서 가져온 데이터를 Java 프로그램에서 활용할 수 있습니다.
+
+	    // 여기서 pstmt는 미리 준비된(prepared) SQL 문장 객체를 나타냅니다. 
+	    // 미리 준비된 SQL 문장 객체는 SQL 인젝션 공격을 방지하기 위해 매개 변수(?)를 사용하여 동적으로 생성할 수 있는 SQL문을 실행할 때 사용됩니다. 
+	    // prepareStatement 메서드를 호출하여 미리 준비된 SQL 문장 객체를 생성하고, ? 자리에 바인딩할 값들을 setXXX 메서드를 사용하여 설정하고, executeQuery 메서드를 호출하여 SQL 문장을 실행합니다.
+
+	    System.out.println("책 제목을 입력하세요 : ");
+	    String title = scanner.nextLine();
+	    System.out.println("책 저자를 입력하세요 : ");
+	    String author = scanner.nextLine();
+
+	    try {
+	        conn = Connector.getConnection();
+
+	        String sql = "SELECT * FROM BOOK WHERE TITLE = ? AND AUTHOR = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, title); // 첫 번째 물음표에 title 값을 바인딩
+	        pstmt.setString(2, author); // 두 번째 물음표에 author 값을 바인딩
+	        rs = pstmt.executeQuery(); // SQL 쿼리를 실행하고, 그 결과로 생성된 ResultSet 객체를 반환함
+
+	        if (rs.next()) { // ResultSet 객체는 DB에서 검색한 결과를 담은 객체, next() 메소드를 호출하여 각 행을 하나하나 읽음
+	            int ID = rs.getInt("ID");
+	            String TITLE = rs.getString("TITLE");
+	            String AUTHOR = rs.getString("AUTHOR");
+	            String PUBLISHER = rs.getString("PUBLISHER");
+	            String LENDPOSSIBLE = rs.getString("LENDPOSSIBLE");
+	            System.out.println("ID: " + ID + ", TITLE: " + TITLE + ", AUTHOR: " + AUTHOR + ", PUBLISHER: " + PUBLISHER + ", LENDPOSSIBLE: " + LENDPOSSIBLE);
+	        } else {
+	            System.out.println("없는 책입니다.");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        Connector.close(conn);
+	    }
+	}
+
 
 	
 	public int searchID() {

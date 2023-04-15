@@ -107,7 +107,7 @@ public class Main{
                     			int bookID = bookManager1.searchID(); //MemberManager를 통해 회원 조회
                     			
                     			// 대출 테이블을 조회하여 memberID가 bookID가 일치하고 대출 중이면 1, 둘이 일치하지 않으면 0 반환
-                    			int returnResult = totalRecorder1.search(memberID, bookID);
+                    			int returnResult = totalRecorder1.search();
                     			// memberID와 bookID를 넣어서 작동하는 메소드를 TotalRecorder에 생성, 이후 사용
                     			if (returnResult == 1) {
                     				System.out.println("회원임을 확인하였습니다. 대출 중인 도서를 반납합니다.");
@@ -171,26 +171,31 @@ public class Main{
                     }
                     break;
 
-                case 3: // 3.도서관리 		"1.대출 가능한 책 리스트 확인   2.도서 추가   3.도서 삭제 	4.이전화면"
+                case 3: // 3.도서관리 		"1.도서 검색   2.도서 추가   3.도서 삭제 	4. 대출 가능한 책 목록 확인 	5.이전화면"
                     boolean shouldContinue13 = true;
                     while (shouldContinue13) { //메인 while문 안의 세번째 while문 
                         Menu bookMenu = new Menu();
                     	int shouldContinue13Input = bookMenu.shouldContinue13Menu();
                     	
                     	switch (shouldContinue13Input) {
-                    		case 1: // 3-1. 대출 가능한 책 리스트 확인 (최근 출간된 순으로)
+                    		case 1: // 3-1. 도서 검색
                     			bookManager1.search();
-                    			break;
+                    			System.out.println("도서 검색을 마치고 이전화면으로 돌아갑니다.\n");
+                                break; // shouldContinue13 while문 탈출
                     			
                     		case 2: // 3-2. 도서 추가
                     			bookManager1.add();
-                    			break;
+                                break; // shouldContinue13 while문 탈출
                     			
                     		case 3: // 3-3. 도서 삭제
                     			bookManager1.delete();
-                                break; 
+                                break; // shouldContinue13 while문 탈출
                                 
-                    		case 4: // 3-4. 이전화면
+                    		case 4: // 3-4. 대출 가능한 책 목록 확인
+                    			bookManager1.delete();
+                                break; // shouldContinue13 while문 탈출
+                                
+                    		case 5: // 3-5. 이전화면
                     			System.out.println("이전화면으로 돌아갑니다.\n");
                                 shouldContinue13 = false; // 수정: shouldContinue 변수를 true로 변경
                                 break; // shouldContinue13 while문 탈출
