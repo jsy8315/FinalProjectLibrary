@@ -67,7 +67,8 @@ public class Main{
                     			
                     			//1-3. 둘다  가능이면 book 테이블, member 테이블의 lendpossible을 대출 불가로 변경(UPDATE)
                     			if (memberID2 != 0 && bookID2 !=0 ) {
-                    				returnManager1.update2(memberID2, bookID2); //book 테이블, member 테이블의 lendpossible을 대출 불가로 변경(UPDATE), lend 테이블에 행 삽입
+                    				returnManager1.update2(memberID2, bookID2); 
+                    				//book 테이블, member 테이블의 lendpossible을 대출 가능으로 변경(UPDATE), lend 테이블에 RETURNDAY UPDATE
                     			} else {
                     				System.out.println("대출 불가능한 회원이거나, 대출 중인 도서입니다. 이전 화면으로 돌아갑니다.");
                     				break;

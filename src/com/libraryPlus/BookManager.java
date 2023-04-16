@@ -125,6 +125,44 @@ public class BookManager implements Manager {
 	    }
 	    return 0;
 	}
+	
+	public int searchReID() {
+	    // 제목, 저자 입력하면 책id만 int 형태로 반환, 아니면 0을 반환
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null; // ResultSet 객체는 DB에서 검색한 결과를 담은 객체
+
+	    System.out.println("반납할 도서가 맞는 지 확인합니다.");
+
+	    System.out.println("먼저, 책 제목을 입력하세요 : ");
+	    String title = scanner.nextLine();
+	    System.out.println("책 저자를 입력하세요 : ");
+	    String author = scanner.nextLine();
+
+	    // 책 제목, 저자가 일치하고 대출이 가능하면 ID를 반환, 아니면 0을 반환
+	    try {
+	        conn = Connector.getConnection();
+
+	        String sql = "SELECT * FROM BOOK WHERE TITLE = ? AND AUTHOR = ? AND LENDPOSSIBLE = '대출불가도서'";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, title); // 첫 번째 물음표에 title 값을 바인딩
+	        pstmt.setString(2, author); // 두 번째 물음표에 author 값을 바인딩
+	        rs = pstmt.executeQuery(); // SQL 쿼리를 실행하고, 그 결과로 생성된 ResultSet 객체를 반환함
+
+	        if (rs.next()) { // ResultSet 객체는 DB에서 검색한 결과를 담은 객체, next() 메소드를 호출하여 각 행을 하나하나 읽음
+	            int ID = rs.getInt("ID");
+	            return ID;
+	        } else {
+	            System.out.println("등록되지 않은 도서거나, 대출 중인 도서가 아닙니다.");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        Connector.close(conn);
+	    }
+	    return 0;
+	}
 
 	
 	public int searchResult() {
