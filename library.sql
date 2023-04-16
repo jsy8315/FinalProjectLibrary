@@ -21,6 +21,12 @@ SELECT * FROM BOOK;
 --BOOK 테이블에
 --1,EPL에서골넣는법,엘링홀란드,맨체스터시티,1
 INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('EPL에서 골 넣는 법', '엘링 홀란드', '맨체스터 시티');
+INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('라리가에서 골 넣는 법', '로베르트 레반도프스키', 'FC바르셀로나');
+INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('라리가에서 어시스트하는 법', '앙투안 그리즈만', 'FC바르셀로나');
+INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('분데스리가에서 골 넣는 법', '니클라스 퓔크루', '베르더브레멘');
+INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('분데스리가에서 어시스트하는 법', '랜달콜로 무아니', '프랑크푸르트');
+INSERT INTO BOOK(TITLE, AUTHOR, PUBLISHER) VALUES ('세리에A에서 골 넣는 법', '빅터 오시멘', '나폴리');
+
 COMMIT;
 --2,EPL에서어시스트하는법, 케빈더브라위너, 맨체스터시티,1
 --3,라리가에서골넣는법,로베르트레반도프스키,FC바르셀로나,1

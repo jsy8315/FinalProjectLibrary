@@ -39,9 +39,10 @@ public class Main{
                     			//1-2. 책 저자, 책 제목 입력받아서 대출 가능이면 책ID, 안되면 0을 리턴
                     			int bookID = bookManager1.searchID();
                     			
+                    			
                     			//1-3. 둘다 대출 가능이면 book 테이블, member 테이블의 lendpossible을 대출 불가로 변경(UPDATE)
                     			if (memberID != 0 && bookID !=0 ) {
-                    				lendManager1.update(); //book 테이블, member 테이블의 lendpossible을 대출 불가로 변경(UPDATE), lend 테이블에 행 삽입
+                    				lendManager1.update2(memberID, bookID); //book 테이블, member 테이블의 lendpossible을 대출 불가로 변경(UPDATE), lend 테이블에 행 삽입
                     			} else {
                     				System.out.println("대출 불가능한 회원이거나, 대출 중인 도서입니다. 이전 화면으로 돌아갑니다.");
                     				break;
@@ -60,38 +61,21 @@ public class Main{
                     			
                     		case 2: // 2.반납 받기
                     			
-                    			// 2-1. 회원 조회,책 조회
-                					// 회원 명단에 있는지 없는지 (없으면 전단계로 보냄)
-                					// 회원 명단에 있다면 반납이 가능한지 안가능한지 (불가능하면 전단계로 보냄)
-                					// 즉, 회원 AND 대출 중이면 (조건을 설정하여 테이블 조회)->  회원번호를 RETURN
-                					// 그 외 조건은(위 조건으로 조회가 안되는 경우) 전단계로 돌려보내는 코드를 여기 이클립스에 적으면 됨
+                    			int memberID2 = memberManager1.searchReID(); //MemberManager를 통해 회원 조회
                     			
-                    			// 회원이 아니면 0, 회원이고 대출이 가능하면 1, 회원이고 현재 대출중이면(대출이 불가능하면) 2을 반환
-                    			System.out.println("반납을 진행합니다. 먼저, 회원 조회를 시작합니다.");
-                    			int memberID2 = memberManager1.searchID(); //MemberManager를 통해 회원 조회
+                    			int bookID2 = bookManager1.searchReID(); //MemberManager를 통해 회원 조회
                     			
-                    			int bookID2 = bookManager1.searchID(); //MemberManager를 통해 회원 조회
-                    			
-                    			// 대출 테이블을 조회하여 memberID가 bookID가 일치하고 대출 중이면 1, 둘이 일치하지 않으면 0 반환
-                    			int returnResult = totalRecorder1.search();
-                    			// memberID와 bookID를 넣어서 작동하는 메소드를 TotalRecorder에 생성, 이후 사용
-                    			if (returnResult == 1) {
-                    				System.out.println("회원임을 확인하였습니다. 대출 중인 도서를 반납합니다.");
+                    			//1-3. 둘다  가능이면 book 테이블, member 테이블의 lendpossible을 대출 불가로 변경(UPDATE)
+                    			if (memberID2 != 0 && bookID2 !=0 ) {
+                    				returnManager1.update2(memberID2, bookID2); //book 테이블, member 테이블의 lendpossible을 대출 불가로 변경(UPDATE), lend 테이블에 행 삽입
                     			} else {
-                    				System.out.println("도서 정보가 일치하지 않습니다. 빌린 책 정보를 다시 확인해주세요. 이전화면으로 돌아갑니다.");
-                    				shouldContinue11 = false; // 수정: shouldContinue 변수를 true로 변경
-                                    break; // shouldContinue11 while문 탈출
-                    			};
+                    				System.out.println("대출 불가능한 회원이거나, 대출 중인 도서입니다. 이전 화면으로 돌아갑니다.");
+                    				break;
+                    			}
                     			
-                    			// 2-2. 반납 처리
-                					// 회원 테이블에 빌린 책 번호, 오늘 날짜, 반납 예정 날짜 추가, 회원 대출 중 표시 추가
-                					// 책 테이블에 빌린 회원 번호, 오늘 날짜. 반납 예정 날짜 추가, 대출 중 표시 추가
                     			System.out.println("반납 처리를 시작합니다.");
-                    			returnManager1.update();
                     			
-                    			// 2-3. 반납 이력 record 테이블에 추가
-                    			totalRecorder1.add();
-                    			System.out.println("대출처리가 완료되었습니다.");
+                    			System.out.println("반납 처리가 완료되었습니다.");
                     			break;
                     			
                     		case 3: // 반납 기한 연장

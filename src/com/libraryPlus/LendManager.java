@@ -26,9 +26,10 @@ BookManager bookManager2 = new BookManager();
 
 	@Override
 	public void update() {
+	}
+	
+	public void update2(int memberID, int bookID) {
 	    // 회원 ID와 책 ID를 찾음
-	    int memberID = memberManager2.searchID();
-	    int bookID = bookManager2.searchID();
 
 	    // 회원과 책의 대출 가능 여부를 변경함
 	    try (Connection conn = Connector.getConnection()) {
@@ -57,6 +58,5 @@ BookManager bookManager2 = new BookManager();
 	        e.printStackTrace();
 	    }
 	}
-
 }
 
