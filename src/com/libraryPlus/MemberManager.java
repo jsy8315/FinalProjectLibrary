@@ -94,8 +94,42 @@ public  class MemberManager implements Manager {
 	}
 	    
 	
-	public int searchID() { // 회원을 조회해서, id를 반환함
-		return 0;
+	public int searchID() {
+	    // 회원 ID만 int 형태로 반환, 아니면 0을 반환
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null; // ResultSet 객체는 DB에서 검색한 결과를 담은 객체
+
+	    System.out.println("회원을 조회하여 회원ID를 반환합니다.");
+
+	    System.out.println("먼저, 회원 이름을 입력하세요 : ");
+	    String name = scanner.nextLine();
+	    System.out.println("회원의 전화번호를 입력하세요 : ");
+	    String phonenumber = scanner.nextLine();
+
+	    // 책 제목, 저자가 일치하고 대출이 가능하면 ID를 반환, 아니면 0을 반환
+	    try {
+	        conn = Connector.getConnection();
+
+	        String sql = "SELECT * FROM MEMBER WHERE NAME = ? AND PHONENUMBER = ? AND LENDPOSSIBLE = '대출가능회원'";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, name); // 첫 번째 물음표에 title 값을 바인딩
+	        pstmt.setString(2, phonenumber); // 두 번째 물음표에 author 값을 바인딩
+	        rs = pstmt.executeQuery(); // SQL 쿼리를 실행하고, 그 결과로 생성된 ResultSet 객체를 반환함
+
+	        if (rs.next()) { // ResultSet 객체는 DB에서 검색한 결과를 담은 객체, next() 메소드를 호출하여 각 행을 하나하나 읽음
+	            int ID = rs.getInt("ID");
+	            return ID;
+	        } else {
+	            System.out.println("등록되지 않은 회원이거나, 대출 중인 회원입니다.");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        Connector.close(conn);
+	    }
+	    return 0;
 	}
 	
 	public int searchResult() {

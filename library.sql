@@ -68,14 +68,17 @@ START WITH 1
 INCREMENT BY 1
 NOCACHE;
 
+DROP TABLE LEND;
+DROP SEQUENCE LEND_ID_SEQ;
 --대출 테이블 만들기
 CREATE TABLE LEND (
     ID                                       NUMBER(10)       DEFAULT LEND_ID_SEQ.NEXTVAL PRIMARY KEY,
     LENDDAY /*대출날짜, 오늘 날짜로*/           DATE             DEFAULT SYSDATE, --오늘날짜로 대출날짜 고정
-    EXPRETURNDAY /*반납예정일*/                DATE             DEFAULT SYSDATE + 7,
-    EXPRETURNCOUNT /*반납 연장할 수 있는 횟수*/  VARCHAR(10)      DEFAULT 1,
-    LENDMEMBERID                             NUMBER(10)        NOT NULL,
-    LENDBOOKID                               NUMBER(10)        NOT NULL
+    EXPRETURNDAY /*반납예정일*/                DATE             DEFAULT SYSDATE + 14,
+    RETURNDAY /*실제반납일*/                   DATE             DEFAULT '1111/11/11', --반납하기 전까지는 1111/11/11로 디폴트
+    EXPRETURNCOUNT /*반납 연장할 수 있는 횟수*/  VARCHAR(10)      DEFAULT 1, --연장하면 차감하고 반납예정일 +7해주기
+    LENDMEMBERID   /*대출한 사람 회원id*/       NUMBER(10)        NOT NULL,
+    LENDBOOKID       /*대출한 책 id*/          NUMBER(10)        NOT NULL
     );
     
 SELECT * FROM LEND;
