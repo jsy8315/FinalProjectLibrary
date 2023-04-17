@@ -17,6 +17,7 @@ CREATE TABLE BOOK (
     );
     
 SELECT * FROM BOOK;
+DESC BOOK;
 
 --BOOK 테이블에
 --1,EPL에서골넣는법,엘링홀란드,맨체스터시티,1

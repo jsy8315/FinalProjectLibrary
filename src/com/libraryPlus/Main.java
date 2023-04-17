@@ -12,7 +12,6 @@ public class Main{
         MemberManager memberManager1 = new MemberManager(); //MemberManager 클래스를 사용해서 인스턴스 생성, 활용하도록 하자
         BookManager bookManager1 = new BookManager(); //BookManager 사용
         LendManager lendManager1 = new LendManager();
-        TotalRecorder totalRecorder1 = new TotalRecorder();
         ReturnManager returnManager1 = new ReturnManager();
 
         while (shouldContinue1) { // 메인 while문 시작, 메인 while문을 돌리면서 진행이 되게끔 했음
